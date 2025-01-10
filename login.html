@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="/ngao cbs logo.jpeg" type="image/jpeg">
+        <title>Login-Ngao CBS</title>
+        
+        <link rel="stylesheet" href="./facebook.css"/>
+        <link rel="stylesheet" href="./login.css"> 
+        <style>
+            .password-container {
+                position: relative;
+            }
+            .toggle-password {
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                transform: translateY(-50%);
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <label class="label" for="Branch ID"><b>Branch ID</b></label>
+            <select id="branch-select" name="Branch ID" required>
+                <option value="" disabled selected>--SELECT BRANCH--</option>
+                <option value="00 -HEAD OFFICE">00 -HEAD OFFICE</option>
+                <option value="01 -UPPERHILL BRANCH">01 -UPPERHILL BRANCH</option>
+                <option value="02 -CBD BRANCH">02 -CBD BRANCH</option>
+                <option value="03 -MOMBASA BRANCH">03 -MOMBASA BRANCH</option>
+                <option value="04 -NAKURU BRANCH">04 -NAKURU BRANCH</option>
+                <option value="05 -ELDORET BRANCH">05 -ELDORET BRANCH</option>
+                <option value="06 -KITENGELA BRANCH">06 -KITENGELA BRANCH</option>
+                <option value="07 -THIKA BRANCH">07 -THIKA BRANCH</option>
+                <option value="08 -KISUMU BRANCH">08 -KISUMU BRANCH</option>
+                <option value="09 -MERU BRANCH">09 -MERU BRANCH</option>
+            </select>
+
+            <label class="label" for="System Date"><b>System Date</b></label>
+            <input type="text" id="system-date" name="SystemDate" placeholder="System Date" readonly required> <hr>
+
+            <label class="label" for="Username"><b>UserName</b></label>
+            <input type="text" name="Username" placeholder="Enter your Username" required> <hr>
+
+            <label class="label" for="password"><b>Password</b></label>
+            <div class="password-container">
+                <input type="password" id="password" name="password" placeholder="Enter password..." required>
+                <span id="toggle-password" class="toggle-password">👁️</span>
+            </div>
+            <hr>
+            <div class="button">
+                <button type="submit">Login</button>
+            </div>
+        </div>
+
+        <script>
+            // Get references to elements
+            const branchSelect = document.getElementById('branch-select');
+            const systemDateInput = document.getElementById('system-date');
+            const passwordInput = document.getElementById('password');
+            const togglePasswordIcon = document.getElementById('toggle-password');
+
+            // Event listener for branch selection
+            branchSelect.addEventListener('change', () => {
+                const currentDate = new Date();
+                const formattedDate = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+                systemDateInput.value = formattedDate;
+            });
+
+            // Event listener for toggling password visibility
+            togglePasswordIcon.addEventListener('click', () => {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text'; // Show password
+                   // togglePasswordIcon.textContent = 'show passord'; // Change icon to hide
+                } else {
+                    passwordInput.type = 'password'; // Hide password
+                    togglePasswordIcon.textContent = '👁️'; // Change icon to show
+                }
+            });
+        </script>
+    </body>
+</html>
